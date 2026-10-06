@@ -1,9 +1,14 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // This is the "view" for listing every customer.
 // Flow: this page includes the functions file -> calls
 // getAllCustomersList() -> which calls the controller -> which calls
 // the model -> which runs a SELECT and returns the rows as an array.
-require_once "../functions/customer_functions.php";
+require_once __DIR__ . "/../core/core.php";
+require_admin(); // Only admins can view the list of all customers
+require_once __DIR__ . "/../functions/customer_functions.php";
 
 // $customers is now an array of associative arrays, one per customer row,
 // e.g. $customers[0]['customer_name']
@@ -12,6 +17,7 @@ $customers = getAllCustomersList();
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="../css/style.css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>All Customers</title>
@@ -22,7 +28,6 @@ $customers = getAllCustomersList();
 	<!-- Simple navigation so you can move between the pages of the app -->
 	<nav>
 		<a href="../index.php">Home</a> |
-		<a href="register.php">Register Customer</a>
 	</nav>
 
 	<table border="1" cellpadding="5" cellspacing="0">

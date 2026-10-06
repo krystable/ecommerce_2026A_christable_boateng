@@ -35,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const country = document.getElementById("customer_country").value.trim();
         const city = document.getElementById("customer_city").value.trim();
         const contact = document.getElementById("customer_contact").value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^[0-9+\-\s]{7,15}$/;
+        const passwordRegex = /^(?=.*[A-Za-z]).{6,}$/;
 
         if (name == "" || name.length > 100) {
             showError("customer_name", "Name is required and must be less than 100 characters.");
@@ -44,8 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
             showError("customer_email", "Valid email is required and must be less than 100 characters.");
             isValid = false;
         }
-        if (pass.length < 6) {
-            showError("customer_pass", "Password must be at least 6 characters long.");
+        if (!passwordRegex.test(pass)) {
+            showError('customer_pass', 'Password must be at least 6 characters and include at least one letter.');
             isValid = false;
         }
         if (country == "") {

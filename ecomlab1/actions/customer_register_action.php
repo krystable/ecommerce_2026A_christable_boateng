@@ -6,7 +6,7 @@
 // and send a response back. It should not contain any SQL itself - that
 // belongs in the model (classes/CustomerClass.php).
 session_start();
-require_once "../controller/CustomerController.php";
+require_once "../controllers/CustomerController.php";
 
 // Tell the browser the response body will be JSON, not HTML
 header("Content-Type: application/json");
@@ -37,6 +37,12 @@ if ($name === '' || $email === '' || $pass === '' || $country === '' || $city ==
 // Never store plain-text passwords. password_hash() turns the password
 // into a secure, one-way hash before it ever reaches the database.
 $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
+$passwordRegex = '/^(?=.*[A-Za-z]).{6,}$/';
+
+if (!preg_match($passwordRegex, $pass)) {
+    echo json_encode(["success" => false, "message" => "Password must be at least 6 characters and include at least one letter."]);
+    exit;
+}
 
 // Create the controller (this also connects to the database, since
 // CustomerController creates a Customer, which extends Database).

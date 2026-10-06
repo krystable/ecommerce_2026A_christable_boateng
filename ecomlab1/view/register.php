@@ -5,21 +5,22 @@
 	-> which calls the controller -> which calls the model -> which
 	inserts the row into the database.
 -->
+	<?php
+
+require_once __DIR__ . "/../core/core.php";
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="../css/style.css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Register Customer</title>
 </head>
 <body>
+	<div class="auth-page"><div class="auth-card">
 	<h1>Customer Registration</h1>
-
-	<!-- Simple navigation so you can move between the pages of the app -->
-	<nav>
-		<a href="../index.php">Home</a> |
-		<a href="customers.php">View All Customers</a>
-	</nav>
 
 	<!--
 		Each input's "name" attribute matches a column in the `customer`
@@ -65,6 +66,8 @@
 			<button type="button" onclick="registerCustomer()">Register</button>
 		</div>
 	</form>
+	<p>Already have an account? <a href="login.php">Login here</a>.</p>
+	</div></div>
 
 	<!-- Validation/success/error messages get written into here by customer.js -->
 	<p id="formMessage"></p>

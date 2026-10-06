@@ -1,0 +1,507 @@
+/* ============================================================
+   Global stylesheet - light purple theme
+   Linked from any page with: <link rel="stylesheet" href="path/to/css/style.css">
+   ============================================================ */
+
+:root {
+    --purple-light: #f3ecfb;
+    --purple-mid: #c9a7eb;
+    --purple-main: #9b6fd1;
+    --purple-dark: #6c4596;
+    --text-dark: #3a2a4d;
+    --white: #ffffff;
+    --error-bg: #fde3e3;
+    --error-text: #a13030;
+    --success-bg: #e6f7ec;
+    --success-text: #2a7a4a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--purple-light);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    color: var(--purple-dark);
+}
+
+a {
+    color: var(--purple-dark);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Navigation ---------- */
+nav {
+    background-color: var(--purple-main);
+    padding: 14px 20px;
+}
+
+nav a {
+    color: var(--white);
+    font-weight: 500;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Layout ---------- */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* ---------- Forms ---------- */
+.form-card {
+    background-color: var(--white);
+    border: 1px solid var(--purple-mid);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    max-width: 400px;
+}
+
+.form-card label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: var(--purple-dark);
+}
+
+.form-card input[type="text"],
+.form-card input[type="email"],
+.form-card input[type="password"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--purple-mid);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-card button {
+    margin-top: 16px;
+    background-color: var(--purple-main);
+    color: var(--white);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.form-card button:hover {
+    background-color: var(--purple-dark);
+}
+
+.cancel-link {
+    display: inline-block;
+    margin-top: 12px;
+    margin-left: 12px;
+    color: var(--purple-dark);
+}
+
+/* ---------- Tables ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--purple-light);
+}
+
+th {
+    background-color: var(--purple-mid);
+    color: var(--white);
+}
+
+tr:hover {
+    background-color: var(--purple-light);
+}
+
+.edit-btn {
+    display: inline-block;
+    background-color: var(--purple-main);
+    color: var(--white);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.edit-btn:hover {
+    background-color: var(--purple-dark);
+    text-decoration: none;
+}
+
+/* ---------- Messages ---------- */
+.message {
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.message.success {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+}
+
+.message.error {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+}
+
+/* ============================================================
+   Auth pages (login / register) - centered card layout
+   ============================================================ */
+
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 60px); /* roughly accounts for nav height */
+    padding: 60px 20px;
+}
+
+.auth-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(108, 69, 150, 0.15);
+    padding: 36px 32px;
+    width: 100%;
+    max-width: 380px;
+}
+
+.auth-card h1 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 22px;
+    text-align: center;
+    color: var(--purple-dark);
+}
+
+.auth-card form div {
+    margin-bottom: 16px;
+}
+
+.auth-card label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--purple-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.auth-card input[type="text"],
+.auth-card input[type="email"],
+.auth-card input[type="password"],
+.auth-card select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--purple-mid);
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.15s ease;
+}
+
+.auth-card input:focus,
+.auth-card select:focus {
+    outline: none;
+    border-color: var(--purple-dark);
+}
+
+.auth-card button[type="submit"],
+.auth-card button[type="button"] {
+    width: 100%;
+    background-color: var(--purple-main);
+    color: var(--white);
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.15s ease;
+}
+
+.auth-card button[type="submit"]:hover,
+.auth-card button[type="button"]:hover {
+    background-color: var(--purple-dark);
+}
+
+.auth-card p {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.field-error,
+.error-message {
+    display: block;
+    font-size: 12px;
+    color: var(--error-text);
+    margin-top: 4px;
+}
+
+/* ============================================================
+   Homepage / dashboard
+   ============================================================ */
+
+.welcome-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(108, 69, 150, 0.1);
+}
+
+.welcome-card h1 {
+    margin: 0 0 6px 0;
+}
+
+.welcome-card .subtitle {
+    margin: 0;
+    color: var(--purple-mid);
+    font-size: 14px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.dashboard-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: var(--white);
+    border: 1.5px solid var(--purple-mid);
+    border-radius: 10px;
+    padding: 20px;
+    text-decoration: none;
+    transition: border-color 0.15s ease, transform 0.1s ease;
+}
+
+.dashboard-tile:hover {
+    border-color: var(--purple-dark);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.tile-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--purple-dark);
+}
+
+.tile-desc {
+    font-size: 13px;
+    color: var(--text-dark);
+    opacity: 0.75;
+}
+
+:root {
+    --purple: #9370cc;
+    --purple-dark: #6f4fa8;
+    --lavender: #f1ebf9;
+    --white: #ffffff;
+    --danger: #d9534f;
+    --sidebar-width: 230px;
+}
+
+/* ---------- Vertical sidebar ---------- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--purple);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 14px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.sidebar a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar .sidebar-brand {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.sidebar-user {
+    color: var(--white);
+    opacity: 0.85;
+    padding: 0 14px 12px;
+    font-size: 0.9rem;
+}
+
+.sidebar-label {
+    color: var(--white);
+    opacity: 0.7;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    padding: 14px 14px 6px;
+}
+
+.sidebar .sidebar-logout {
+    margin-top: auto;           /* pushes Logout to the bottom */
+    background: rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* Push page content to the right of the sidebar */
+.container {
+    margin-left: var(--sidebar-width);
+    padding: 30px;
+}
+
+/* ---------- Brand & Category pages ---------- */
+.container h1,
+.container h2 {
+    color: var(--purple-dark);
+}
+
+.container form {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 480px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(111, 79, 168, 0.12);
+}
+
+.container form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.container form input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d6c8ee;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-bottom: 14px;
+    font-size: 1rem;
+}
+
+.container form input[type="text"]:focus {
+    outline: none;
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(147, 112, 204, 0.25);
+}
+
+.container form button,
+.container form input[type="submit"] {
+    background: var(--purple);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.container form button:hover,
+.container form input[type="submit"]:hover {
+    background: var(--purple-dark);
+}
+
+.container table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(111, 79, 168, 0.12);
+}
+
+.container th {
+    background: var(--purple);
+    color: var(--white);
+    text-align: left;
+    padding: 12px 16px;
+}
+
+.container td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee5f8;
+}
+
+.container tr:last-child td {
+    border-bottom: none;
+}
+
+.container tbody tr:hover {
+    background: var(--lavender);
+}
+
+/* Edit / Delete links in the table */
+.container td a {
+    color: var(--purple-dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.container td a:hover {
+    text-decoration: underline;
+}
+
+.container td a[onclick*="delete"] {
+    color: var(--danger);
+}
+
+.container td form.inline-form {
+    background: none;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+    box-shadow: none;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.container td form.inline-form input[type="text"] {
+    margin-bottom: 0;
+    flex: 1;
+}
