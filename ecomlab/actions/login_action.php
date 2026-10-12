@@ -33,7 +33,7 @@ if (isset($result["customer_id"])) {
     $_SESSION['customer_email'] = $result['customer_email'];
     $_SESSION['user_role'] = $result['user_role'];
 
-    // index.php is in the root of ecomlab2
+    // index.php is in the root of ecomlab
     header("Location: ../index.php");
     exit;
 

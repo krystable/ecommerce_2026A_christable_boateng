@@ -21,7 +21,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // ---------- Base URL ----------
 if (!defined('BASE_URL')) {
-    define('BASE_URL', '/ecomlab2');
+    define('BASE_URL', '/ecomlab');
 }
 
 // ---------- Auth helpers ----------

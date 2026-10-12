@@ -1,2 +1,4 @@
 core/db_cred.php
+images/products/*
+!images/products/.gitkeep
 .DS_Store

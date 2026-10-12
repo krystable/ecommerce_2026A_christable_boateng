@@ -1,30 +1,20 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-require_once  __DIR__ . "/../core/core.php";
+require_once __DIR__ . "/../core/core.php";
 require_admin();
-
 require_once __DIR__ . "/../controllers/ProductController.php";
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: " . BASE_URL . "/view/admin/category.php");
-    exit;
-}
+$name = trim($_POST['cat_name'] ?? '');   // must be cat_name, not category_name
 
-$name = trim(strip_tags($_POST['category_name'] ?? ''));
-
-if ($name === "") {
-    $_SESSION['error'] = "Category name cannot be empty.";
-    header("Location: " . BASE_URL . "/view/admin/category.php");
-    exit;
-}
-
-$controller = new ProductController();
-$result = $controller->addCategory($name);
-
-if ($result) {
-    $_SESSION['success'] = "Category added successfully.";
+if ($name !== '') {
+    $controller = new ProductController();
+    $ok = $controller->addCategory($name);
+    $_SESSION[$ok ? 'success' : 'error'] = $ok ? 'Category added.' : 'Could not add category.';
 } else {
-    $_SESSION['error'] = "Failed to add category. It may already exist.";
+    $_SESSION['error'] = 'Category name is required.';
 }
-header("Location: ". BASE_URL . "/view/admin/category.php");
+
+header("Location: " . BASE_URL . "/view/admin/category.php");
 exit;

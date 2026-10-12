@@ -68,4 +68,67 @@ class ProductClass extends Database
         $sql = "DELETE FROM categories WHERE cat_id = ?";
         return $this->execute($sql, [$id]);
     }
+
+
+//add product functions
+    public function addProduct($cat, $brand, $title, $price, $desc, $image, $keywords)
+    {
+        $sql = "INSERT INTO products (product_cat, product_brand, product_title, product_price,product_desc, product_image, product_keywords)
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
+        return $this->execute($sql, [$cat, $brand, $title, $price, $desc, $image, $keywords]);
+    
+    }
+
+    public function updateProduct($id, $cat, $brand, $title, $price, $desc, $image, $keywords)
+    {
+        $sql = "UPDATE products SET product_cat = ?, product_brand = ?, product_title = ?, 
+        product_price = ?, product_desc = ?, product_image = ?, product_keywords = ? WHERE product_id = ?";
+        return $this->execute($sql, [$cat, $brand, $title, $price, $desc, $image, $keywords, $id]);
+    }
+
+    
+    public function getProductById($id)
+    {
+        $sql = "SELECT p.*, c.cat_name, b.brand_name
+                FROM products p
+                JOIN categories c ON p.product_cat = c.cat_id
+                JOIN brands b ON p.product_brand = b.brand_id
+                WHERE p.product_id = ?";
+        $rows = $this->fetchAll($sql, [$id]);
+        return $rows ? $rows[0] : null;
+    }
+
+    public function getAllProducts()
+    {
+    $sql = "SELECT p.*, c.cat_name, b.brand_name
+            FROM products p
+            JOIN categories c ON p.product_cat = c.cat_id
+            JOIN brands b ON p.product_brand = b.brand_id
+            ORDER BY p.product_id DESC";
+    return $this->fetchAll($sql) ?: [];
+    }
+
+    public function getFeaturedProducts($limit = 6)
+    {
+        $limit = (int)$limit;
+        $sql = "SELECT * FROM products ORDER BY RAND() LIMIT $limit";
+        return $this->fetchAll($sql) ?: [];
+    }
+
+    public function getProductByCategory($cat_id)
+    {
+        return $this->fetchAll("SELECT * FROM products WHERE product_cat = ?", [$cat_id]) ?: [];
+    }
+
+    public function getProductByBrand($brand_id)
+    {
+        return $this->fetchAll("SELECT * FROM products WHERE product_brand = ?", [$brand_id]) ?: [];
+    }
+
+    public function searchProducts($query)
+    {
+        $like = '%' . $query . '%';
+        $sql = "SELECT * FROM products WHERE product_title LIKE ? OR product_keywords LIKE ?";
+        return $this->fetchAll($sql, [$like, $like]) ?: [];
+    }
 }
