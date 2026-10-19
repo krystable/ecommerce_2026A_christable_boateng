@@ -114,3 +114,17 @@ function sessionSecurity() {
 }
 
 sessionSecurity(); // runs on every page load
+
+function get_ip() {
+    return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+}
+
+function get_cart_key() {
+    if (is_logged_in()) {
+        return 'c_' . (int)$_SESSION['customer_id'];
+    }
+    if (empty($_SESSION['guest_cart_id'])) {
+        $_SESSION['guest_cart_id'] = bin2hex(random_bytes(8));
+    }
+    return 'g_' . $_SESSION['guest_cart_id'];
+}

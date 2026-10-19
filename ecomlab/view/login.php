@@ -1,48 +1,48 @@
 <?php
-
 require_once __DIR__ . "/../core/core.php";
 ?>
-
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="../css/style.css">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | SHOPPN</title>
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/style.css">
+</head>
+<body>
+<div class="auth-page">
+    <div class="auth-card">
 
-        <body>
-            <div class="auth-page"><div class="auth-card">
-            <h1>Login</h1>
-            
-            <?php
-            if (isset($_SESSION['error'])) {
-                echo "<p style='color: red;'>" . $_SESSION['error'] . "</p>";
-                unset($_SESSION['error']);
-            }
-            ?>
+        <div class="auth-logo">
+            <span class="mark">&#128717;</span>
+            <div class="wordmark">SHOPPN</div>
+            <div class="tagline">Beauty you can shop in a tap</div>
+        </div>
 
-            <form action="../actions/login_action.php" method="POST">
-                <div>
-                <label for="customer_email">Email:</label>
-                <input type="email" id="customer_email" name="customer_email" required><br><br>
-                </div>
-                <div>
+        <h2 class="auth-title">Welcome back</h2>
+        <p class="auth-sub">Log in to continue shopping.</p>
 
-                <label for="customer_pass">Password:</label>
-                <input type="password" id="customer_pass" name="customer_pass" required><br><br>
-                </div>
+        <?php require __DIR__ . "/layout/flash.php"; ?>
 
-                <div>
-                    <button type="submit">Login</button>
-                </div>  
-            </form>
+        <form action="<?php echo BASE_URL; ?>/actions/login_action.php" method="POST">
+            <div class="field">
+                <label for="customer_email">Email</label>
+                <input type="email" id="customer_email" name="customer_email"
+                       placeholder="you@example.com" required autofocus>
+            </div>
 
-            <p>Don't have an account? <a href="register.php">Register here</a>.</p>
-            </div></div>
-        </body>
-        </html>
+            <div class="field">
+                <label for="customer_pass">Password</label>
+                <input type="password" id="customer_pass" name="customer_pass"
+                       placeholder="Your password" required>
+            </div>
 
-        
+            <button type="submit">Log in</button>
+        </form>
+
+        <p class="auth-switch">New to SHOPPN? <a href="<?php echo BASE_URL; ?>/view/register.php">Create an account</a></p>
+    </div>
+</div>
+<script src="<?php echo BASE_URL; ?>/js/auth.js"></script>
+</body>
+</html>

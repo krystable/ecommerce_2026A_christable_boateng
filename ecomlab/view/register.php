@@ -20,7 +20,7 @@ require_once __DIR__ . "/../core/core.php";
 </head>
 <body>
 	<div class="auth-page"><div class="auth-card">
-	<h1>Customer Registration</h1>
+	   <script src="<?php echo BASE_URL; ?>/js/auth.js"></script>
 
 	<!--
 		Each input's "name" attribute matches a column in the `customer`

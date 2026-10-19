@@ -131,4 +131,14 @@ class ProductClass extends Database
         $sql = "SELECT * FROM products WHERE product_title LIKE ? OR product_keywords LIKE ?";
         return $this->fetchAll($sql, [$like, $like]) ?: [];
     }
+
+    public function getProductsByCategory($cat_id)
+    {
+        return $this->fetchAll("SELECT * FROM products WHERE product_cat = ?", [$cat_id]) ?: [];
+    }
+
+    public function getProductsByBrand($brand_id)
+    {
+        return $this->fetchAll("SELECT * FROM products WHERE product_brand = ?", [$brand_id]) ?: [];
+    }
 }
