@@ -1,0 +1,6 @@
+core/db_cred.php
+ecomlab1/core/paystack_config.php
+images/products/*
+!images/products/.gitkeep
+.DS_Store
+core/paystack_config.php
