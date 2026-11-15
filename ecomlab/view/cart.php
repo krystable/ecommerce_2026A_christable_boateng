@@ -66,7 +66,7 @@ $total = $cart->getCartTotal($ip);
                 <button type="submit" formaction="<?php echo BASE_URL; ?>/actions/remove_from_cart_action.php">Remove from Cart</button>
                 <button type="submit">Update Quantity</button>
                 <a href="<?php echo BASE_URL; ?>/view/home.php" class="btn">Continue Shopping</a>
-                <a href="<?php echo BASE_URL; ?>/view/checkout.php" class="btn">Checkout</a>
+                <a href="<?php echo BASE_URL; ?>/view/payment.php" class="btn">Checkout</a>
             </div>
         </form>
     <?php endif; ?>

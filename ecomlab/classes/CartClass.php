@@ -61,4 +61,67 @@ class CartClass extends Database
             [(int)$new_qty, $product_id, $ip]
         );
     }
+
+    
+    public function processPayment($customer_id, $ip, $reference, $amount)
+    {
+        $conn = $this->getConnection();
+
+        try {
+            $conn->beginTransaction();
+
+        
+            $items = $this->getCartItems($ip);
+            if (empty($items)) {
+                $conn->rollBack();
+                return false;
+            }
+
+            
+            $invoice_no = mt_rand(100000, 999999);
+
+            
+            $stmt = $conn->prepare("
+                INSERT INTO orders (customer_id, invoice_no, order_date, order_status)
+                VALUES (?, ?, CURDATE(), 'paid')
+            ");
+            $stmt->execute([$customer_id, $invoice_no]);
+            $order_id = $conn->lastInsertId();
+
+           
+            $stmt = $conn->prepare("
+                INSERT INTO orderdetails (order_id, product_id, qty)
+                SELECT ?, p_id, qty FROM cart WHERE ip_add = ?
+            ");
+            $stmt->execute([$order_id, $ip]);
+
+           
+            $stmt = $conn->prepare("DELETE FROM cart WHERE ip_add = ?");
+            $stmt->execute([$ip]);
+
+            $conn->commit();
+
+        
+            return $order_id;
+
+        } catch (Exception $e) {
+            if ($conn->inTransaction()) {
+                $conn->rollBack();
+            }
+            return false;
+        }
+    }
+
+    public function getOrderById($order_id, $customer_id)
+    {
+        $sql = "
+            SELECT o.order_id, o.invoice_no, o.order_date, o.order_status,
+                   d.product_id, d.qty, p.product_title, p.product_price
+            FROM orders o
+            JOIN orderdetails d ON d.order_id = o.order_id
+            JOIN products p ON p.product_id = d.product_id
+            WHERE o.order_id = ? AND o.customer_id = ?
+        ";
+        return $this->fetchAll($sql, [$order_id, $customer_id]);
+    }
 }

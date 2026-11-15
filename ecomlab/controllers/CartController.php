@@ -37,4 +37,14 @@ class CartController
     public function updateQty($product_id, $new_qty, $ip){
         return $this->cart->updateQty($product_id, $new_qty, $ip);
     }
+    
+    public function processPayment($customer_id, $ip, $reference, $amount)
+    {
+        return $this->cart->processPayment($customer_id, $ip, $reference, $amount);
+    }
+
+    public function getOrderById($order_id, $customer_id)
+    {
+        return $this->cart->getOrderById($order_id, $customer_id);
+    }
 }
